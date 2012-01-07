@@ -1,10 +1,9 @@
-package payrollcasestudy.transactions.delete.employees;
+package payrollcasestudy.transactions.delete.employee;
 
-import org.junit.Before;
 import org.junit.Test;
 import payrollcasestudy.Employee;
 import payrollcasestudy.transactions.DatabaseAwareTest;
-import payrollcasestudy.transactions.add.employees.AddCommissionedEmployeeTransaction;
+import payrollcasestudy.transactions.add.employee.AddCommissionedEmployeeTransaction;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;

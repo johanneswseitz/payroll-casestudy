@@ -1,4 +1,4 @@
-package payrollcasestudy.transactions.delete.employees;
+package payrollcasestudy.transactions.delete.employee;
 
 import payrollcasestudy.PayrollDatabase;
 import payrollcasestudy.transactions.Transaction;

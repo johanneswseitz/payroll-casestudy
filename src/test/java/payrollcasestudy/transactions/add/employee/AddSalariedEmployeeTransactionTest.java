@@ -1,4 +1,4 @@
-package payrollcasestudy.transactions.add.employees;
+package payrollcasestudy.transactions.add.employee;
 
 import org.junit.Test;
 import payrollcasestudy.Employee;
