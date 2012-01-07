@@ -26,10 +26,6 @@ public class Employee {
         this.paymentClassification = paymentClassification;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setPaymentSchedule(PaymentSchedule paymentSchedule) {
         this.paymentSchedule = paymentSchedule;
     }
@@ -40,18 +36,6 @@ public class Employee {
 
     public String getName() {
         return name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
     }
 
     public PaymentMethod getPaymentMethod() {
