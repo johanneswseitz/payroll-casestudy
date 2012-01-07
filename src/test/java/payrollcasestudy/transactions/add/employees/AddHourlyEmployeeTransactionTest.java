@@ -1,28 +1,20 @@
 package payrollcasestudy.transactions.add.employees;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import payrollcasestudy.Employee;
-import payrollcasestudy.PayrollDatabase;
 import payrollcasestudy.paymentclassifiactions.HourlyPaymentClassification;
 import payrollcasestudy.paymentclassifiactions.PaymentClassification;
 import payrollcasestudy.paymentmethods.HoldMethod;
 import payrollcasestudy.paymentschedule.WeeklyPaymentSchedule;
+import payrollcasestudy.transactions.DatabaseAwareTest;
 import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-public class AddHourlyEmployeeTransactionTest {
+public class AddHourlyEmployeeTransactionTest  extends DatabaseAwareTest {
 
-    private PayrollDatabase payrollDatabase;
     protected double FLOATING_POINT_ACCURACY = 0.000001;
-
-    @Before
-    public void setUp(){
-        payrollDatabase = PayrollDatabase.globalPayrollDatabase;
-    }
 
     @Test
     public void testAddHourlyEmployee(){
@@ -41,11 +33,6 @@ public class AddHourlyEmployeeTransactionTest {
 
         assertThat(employee.getPaymentSchedule(), is(instanceOf(WeeklyPaymentSchedule.class)));
         assertThat(employee.getPaymentMethod(), is(instanceOf(HoldMethod.class)));
-    }
-
-    @After
-    public void tearDown(){
-        payrollDatabase.clear();
     }
 
 }
