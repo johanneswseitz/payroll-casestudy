@@ -1,12 +1,13 @@
 package payrollcasestudy.transactions.add.employee;
 
+import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.Employee;
 import payrollcasestudy.paymentclassifiactions.CommissionedPaymentClassification;
 import payrollcasestudy.paymentclassifiactions.PaymentClassification;
 import payrollcasestudy.paymentmethods.HoldMethod;
 import payrollcasestudy.paymentschedule.BiweeklyPaymentSchedule;
-import payrollcasestudy.transactions.DatabaseAwareTest;
+import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.Matchers.*;
@@ -15,8 +16,11 @@ import static org.junit.Assert.assertThat;
 /**
  * No Listing
  */
-public class AddCommissionedEmployeeTransactionTest extends DatabaseAwareTest{
+public class AddCommissionedEmployeeTransactionTest {
     protected double FLOATING_POINT_ACCURACY = 0.000001;
+
+    @Rule
+    public DatabaseResource database = new DatabaseResource();
 
     @Test
     public void testAddCommissionedEmployee(){
@@ -24,7 +28,7 @@ public class AddCommissionedEmployeeTransactionTest extends DatabaseAwareTest{
         Transaction addEmployeeTransaction =
                 new AddCommissionedEmployeeTransaction(employeeId, "Michael", "Home", 200.0 , 20.0);
         addEmployeeTransaction.execute();
-        Employee employee = payrollDatabase.getEmployee(employeeId);
+        Employee employee = database.getInstance().getEmployee(employeeId);
         assertThat(employee.getName(), is(equalTo("Michael")));
 
         PaymentClassification paymentClassification = employee.getPaymentClassification();
