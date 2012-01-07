@@ -12,6 +12,9 @@ import payrollcasestudy.transactions.Transaction;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
+/**
+ * No Listing
+ */
 public class AddHourlyEmployeeTransactionTest  extends DatabaseAwareTest {
 
     protected double FLOATING_POINT_ACCURACY = 0.000001;
