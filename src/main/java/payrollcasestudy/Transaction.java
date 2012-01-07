@@ -1,4 +1,4 @@
-package payroll_casestudy;
+package payrollcasestudy;
 
 /**
  * Listing 19-1
