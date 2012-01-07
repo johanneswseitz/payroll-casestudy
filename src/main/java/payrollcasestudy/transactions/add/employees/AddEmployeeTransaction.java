@@ -1,10 +1,11 @@
-package payrollcasestudy.employeetransactions;
+package payrollcasestudy.transactions.add.employees;
 
 import payrollcasestudy.*;
 import payrollcasestudy.paymentclassifiactions.PaymentClassification;
 import payrollcasestudy.paymentmethods.HoldMethod;
 import payrollcasestudy.paymentmethods.PaymentMethod;
 import payrollcasestudy.paymentschedule.PaymentSchedule;
+import payrollcasestudy.transactions.Transaction;
 
 /**
  * Listing 19-5

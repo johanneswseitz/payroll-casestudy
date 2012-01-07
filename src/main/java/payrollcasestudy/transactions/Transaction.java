@@ -1,4 +1,4 @@
-package payrollcasestudy;
+package payrollcasestudy.transactions;
 
 /**
  * Listing 19-1
