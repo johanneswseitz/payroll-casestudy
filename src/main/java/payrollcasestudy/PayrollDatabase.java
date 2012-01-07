@@ -23,4 +23,8 @@ public class PayrollDatabase {
     public void clear(){
         employees.clear();
     }
+
+    public void deleteEmployee(int employeeId) {
+        employees.put(employeeId, null);
+    }
 }
