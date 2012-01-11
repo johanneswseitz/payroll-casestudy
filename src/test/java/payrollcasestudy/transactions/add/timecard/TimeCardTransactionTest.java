@@ -26,13 +26,17 @@ public class TimeCardTransactionTest {
         AddHourlyEmployeeTransaction addHourlyEmployee =
                 new AddHourlyEmployeeTransaction(employeeId, "Billy", "Home", 15.25);
         addHourlyEmployee.execute();
+
         Transaction timeCardTransaction = new TimeCardTransaction(20011031, 8.0, employeeId);
         timeCardTransaction.execute();
+
         Employee employee = database.getInstance().getEmployee(employeeId);
         assertThat(employee, is(notNullValue()));
+
         PaymentClassification paymentClassification = employee.getPaymentClassification();
         HourlyPaymentClassification hourlyPaymentClassification = (HourlyPaymentClassification) paymentClassification;
         assertThat(hourlyPaymentClassification, is(notNullValue()));
+
         TimeCard timeCard =  hourlyPaymentClassification.getTimeCard(20011031);
         assertNotNull(timeCard);
         assertThat(timeCard.getHours() , is(equalTo(8.0)));
