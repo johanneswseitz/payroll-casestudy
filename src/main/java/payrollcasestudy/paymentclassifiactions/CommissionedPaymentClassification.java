@@ -1,9 +1,15 @@
 package payrollcasestudy.paymentclassifiactions;
 
+import payrollcasestudy.SalesReceipt;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Johannes Seitz
  */
 public class CommissionedPaymentClassification implements PaymentClassification {
+    private Map<Integer, SalesReceipt> salesReceiptMap = new HashMap<Integer, SalesReceipt>();
     private double commissionRate;
     private double monthlySalary;
 
@@ -18,5 +24,13 @@ public class CommissionedPaymentClassification implements PaymentClassification 
 
     public double getCommissionRate() {
         return commissionRate;
+    }
+
+    public SalesReceipt getSalesReceipt(int date) {
+        return salesReceiptMap.get(date);
+    }
+
+    public void addSalesReceipt(SalesReceipt salesReceipt) {
+        salesReceiptMap.put(salesReceipt.getDate(), salesReceipt);
     }
 }

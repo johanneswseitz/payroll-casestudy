@@ -3,13 +3,12 @@ package payrollcasestudy.transactions.add.timecard;
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.Employee;
+import payrollcasestudy.TimeCard;
 import payrollcasestudy.paymentclassifiactions.HourlyPaymentClassification;
 import payrollcasestudy.paymentclassifiactions.PaymentClassification;
 import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.Transaction;
 import payrollcasestudy.transactions.add.employee.AddHourlyEmployeeTransaction;
-import payrollcasestudy.transactions.add.timecard.TimeCard;
-import payrollcasestudy.transactions.add.timecard.TimeCardTransaction;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertNotNull;

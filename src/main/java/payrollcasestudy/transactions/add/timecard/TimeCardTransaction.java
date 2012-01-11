@@ -2,6 +2,7 @@ package payrollcasestudy.transactions.add.timecard;
 
 import payrollcasestudy.Employee;
 import payrollcasestudy.PayrollDatabase;
+import payrollcasestudy.TimeCard;
 import payrollcasestudy.paymentclassifiactions.HourlyPaymentClassification;
 import payrollcasestudy.paymentclassifiactions.PaymentClassification;
 import payrollcasestudy.transactions.Transaction;

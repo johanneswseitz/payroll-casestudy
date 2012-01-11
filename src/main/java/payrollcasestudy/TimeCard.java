@@ -1,4 +1,4 @@
-package payrollcasestudy.transactions.add.timecard;
+package payrollcasestudy;
 
 public class TimeCard {
     private int date;

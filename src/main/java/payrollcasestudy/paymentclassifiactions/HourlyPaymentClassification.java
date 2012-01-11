@@ -1,6 +1,6 @@
 package payrollcasestudy.paymentclassifiactions;
 
-import payrollcasestudy.transactions.add.timecard.TimeCard;
+import payrollcasestudy.TimeCard;
 
 import java.util.HashMap;
 import java.util.Map;
