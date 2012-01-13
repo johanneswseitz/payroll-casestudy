@@ -1,7 +1,7 @@
 package payrollcasestudy.transactions.add.employee;
 
-import payrollcasestudy.paymentclassifiactions.PaymentClassification;
-import payrollcasestudy.paymentclassifiactions.SalariedClassification;
+import payrollcasestudy.paymentclassifications.PaymentClassification;
+import payrollcasestudy.paymentclassifications.SalariedClassification;
 import payrollcasestudy.paymentschedule.MonthlyPaymentSchedule;
 import payrollcasestudy.paymentschedule.PaymentSchedule;
 

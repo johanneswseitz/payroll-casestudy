@@ -1,7 +1,7 @@
 package payrollcasestudy.transactions.add.employee;
 
 import payrollcasestudy.*;
-import payrollcasestudy.paymentclassifiactions.PaymentClassification;
+import payrollcasestudy.paymentclassifications.PaymentClassification;
 import payrollcasestudy.paymentmethods.HoldMethod;
 import payrollcasestudy.paymentmethods.PaymentMethod;
 import payrollcasestudy.paymentschedule.PaymentSchedule;

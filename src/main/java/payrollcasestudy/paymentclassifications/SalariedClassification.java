@@ -1,4 +1,4 @@
-package payrollcasestudy.paymentclassifiactions;
+package payrollcasestudy.paymentclassifications;
 
 public class SalariedClassification implements PaymentClassification {
     private double salary;

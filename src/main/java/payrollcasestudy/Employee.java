@@ -1,6 +1,6 @@
 package payrollcasestudy;
 
-import payrollcasestudy.paymentclassifiactions.PaymentClassification;
+import payrollcasestudy.paymentclassifications.PaymentClassification;
 import payrollcasestudy.paymentmethods.PaymentMethod;
 import payrollcasestudy.paymentschedule.PaymentSchedule;
 

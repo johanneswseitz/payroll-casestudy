@@ -1,4 +1,4 @@
-package payrollcasestudy.paymentclassifiactions;
+package payrollcasestudy.paymentclassifications;
 
 import payrollcasestudy.TimeCard;
 

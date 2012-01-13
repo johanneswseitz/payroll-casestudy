@@ -3,12 +3,9 @@ package payrollcasestudy.transactions.add.salesreceipt;
 import payrollcasestudy.Employee;
 import payrollcasestudy.PayrollDatabase;
 import payrollcasestudy.SalesReceipt;
-import payrollcasestudy.paymentclassifiactions.CommissionedPaymentClassification;
-import payrollcasestudy.paymentclassifiactions.PaymentClassification;
+import payrollcasestudy.paymentclassifications.CommissionedPaymentClassification;
+import payrollcasestudy.paymentclassifications.PaymentClassification;
 import payrollcasestudy.transactions.Transaction;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddSalesReceiptTransaction implements Transaction{
 

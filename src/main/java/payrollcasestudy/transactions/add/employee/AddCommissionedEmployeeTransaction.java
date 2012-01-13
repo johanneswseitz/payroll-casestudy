@@ -1,7 +1,7 @@
 package payrollcasestudy.transactions.add.employee;
 
-import payrollcasestudy.paymentclassifiactions.CommissionedPaymentClassification;
-import payrollcasestudy.paymentclassifiactions.PaymentClassification;
+import payrollcasestudy.paymentclassifications.CommissionedPaymentClassification;
+import payrollcasestudy.paymentclassifications.PaymentClassification;
 import payrollcasestudy.paymentschedule.BiweeklyPaymentSchedule;
 import payrollcasestudy.paymentschedule.PaymentSchedule;
 
