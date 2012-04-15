@@ -4,6 +4,12 @@ import payrollcasestudy.paymentclassifications.PaymentClassification;
 import payrollcasestudy.paymentmethods.PaymentMethod;
 import payrollcasestudy.paymentschedule.PaymentSchedule;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
+
 public class Employee {
     private PaymentClassification paymentClassification;
     private PaymentSchedule paymentSchedule;
@@ -11,6 +17,7 @@ public class Employee {
     private int employeeId;
     private String name;
     private String address;
+    private List<Affiliation> unionAffiliations = new ArrayList<Affiliation>();
 
     public Employee(int employeeId, String name, String address) {
         this.employeeId = employeeId;
@@ -44,5 +51,13 @@ public class Employee {
 
     public PaymentSchedule getPaymentSchedule() {
         return paymentSchedule;
+    }
+
+    public void setUnionAffiliation(UnionAffiliation unionAffiliation) {
+        this.unionAffiliations.add(unionAffiliation);
+    }
+
+    public List<Affiliation> getAffiliations() {
+        return unionAffiliations;
     }
 }
