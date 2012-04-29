@@ -1,13 +1,9 @@
 package payrollcasestudy.entities;
 
-import payrollcasestudy.entities.affiliations.Affiliation;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentmethods.PaymentMethod;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Employee {
     private PaymentClassification paymentClassification;
@@ -16,7 +12,7 @@ public class Employee {
     private int employeeId;
     private String name;
     private String address;
-    private List<Affiliation> unionAffiliations = new ArrayList<Affiliation>();
+    private UnionAffiliation unionAffiliation = UnionAffiliation.NO_AFFILIATION;
 
     public Employee(int employeeId, String name, String address) {
         this.employeeId = employeeId;
@@ -53,11 +49,7 @@ public class Employee {
     }
 
     public void setUnionAffiliation(UnionAffiliation unionAffiliation) {
-        this.unionAffiliations.add(unionAffiliation);
-    }
-
-    public List<Affiliation> getAffiliations() {
-        return unionAffiliations;
+        this.unionAffiliation = unionAffiliation;
     }
 
     public void setName(String name) {
@@ -70,5 +62,9 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public UnionAffiliation getUnionAffiliation() {
+        return unionAffiliation;
     }
 }

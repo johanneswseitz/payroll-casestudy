@@ -27,9 +27,9 @@ public class AddServiceChargeTransactionTest {
         Employee employee = database.getInstance().getEmployee(employeeId);
         assertThat(employee, is(notNullValue()));
 
-        UnionAffiliation unionAffiliation = new UnionAffiliation(12.5);
-        employee.setUnionAffiliation(unionAffiliation);
         int memberId = 86; //Maxwell Smart
+        UnionAffiliation unionAffiliation = new UnionAffiliation(memberId,12.5);
+        employee.setUnionAffiliation(unionAffiliation);
         database.getInstance().addUnionMember(memberId, employee);
         assertThat(database.getInstance().getUnionMember(memberId), is(notNullValue()));
 

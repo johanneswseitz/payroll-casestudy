@@ -13,7 +13,7 @@ public class PayrollDatabase {
     public static PayrollDatabase globalPayrollDatabase = new PayrollDatabase();
 
     private Map<Integer, Employee> employees = new HashMap<Integer, Employee>();
-    private Map<Integer, Employee> unionMembers = new HashMap<Integer, Employee>();
+    public Map<Integer, Employee> unionMembers = new HashMap<Integer, Employee>();
 
 
     public Employee getEmployee(int employeeId) {
@@ -26,6 +26,7 @@ public class PayrollDatabase {
 
     public void clear(){
         employees.clear();
+        unionMembers.clear();
     }
 
     public void deleteEmployee(int employeeId) {
@@ -38,5 +39,9 @@ public class PayrollDatabase {
 
     public void addUnionMember(int memberId, Employee employee) {
         unionMembers.put(memberId, employee);
+    }
+
+    public void deleteUnionMember(int memberId) {
+        unionMembers.remove(memberId);
     }
 }

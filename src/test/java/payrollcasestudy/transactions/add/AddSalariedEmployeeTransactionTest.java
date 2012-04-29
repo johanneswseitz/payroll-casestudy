@@ -4,6 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.Employee;
+import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 import payrollcasestudy.entities.paymentmethods.HoldMethod;
@@ -39,6 +40,7 @@ public class AddSalariedEmployeeTransactionTest {
 
         assertThat(employee.getPaymentSchedule(), is(instanceOf(MonthlyPaymentSchedule.class)));
         assertThat(employee.getPaymentMethod(), is(instanceOf(HoldMethod.class)));
+        assertThat(employee.getUnionAffiliation(), is(UnionAffiliation.NO_AFFILIATION));
     }
 
 }
