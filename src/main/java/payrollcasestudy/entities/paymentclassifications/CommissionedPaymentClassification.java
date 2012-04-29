@@ -10,7 +10,7 @@ public class CommissionedPaymentClassification implements PaymentClassification 
     private double commissionRate;
     private double monthlySalary;
 
-    public CommissionedPaymentClassification(double commissionRate, double monthlySalary) {
+    public CommissionedPaymentClassification(double monthlySalary, double commissionRate) {
         this.commissionRate = commissionRate;
         this.monthlySalary = monthlySalary;
     }

@@ -26,6 +26,6 @@ public class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction{
 
     @Override
     protected PaymentClassification getPaymentClassification() {
-        return new CommissionedPaymentClassification(commissionRate, monthlySalary);
+        return new CommissionedPaymentClassification(monthlySalary, commissionRate);
     }
 }
