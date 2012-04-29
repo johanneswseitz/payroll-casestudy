@@ -9,6 +9,7 @@ import payrollcasestudy.entities.paymentmethods.HoldMethod;
 import payrollcasestudy.entities.paymentschedule.WeeklyPaymentSchedule;
 import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.Transaction;
+import static payrollcasestudy.TestConstants.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -20,8 +21,6 @@ public class AddHourlyEmployeeTransactionTest  {
 
     @Rule
     public DatabaseResource database = new DatabaseResource();
-
-    protected double FLOATING_POINT_ACCURACY = 0.000001;
 
     @Test
     public void testAddHourlyEmployee(){
@@ -36,7 +35,7 @@ public class AddHourlyEmployeeTransactionTest  {
         assertThat(paymentClassification, is(instanceOf(HourlyPaymentClassification.class)));
         HourlyPaymentClassification hourlyPaymentClassification =
                 (HourlyPaymentClassification) paymentClassification;
-        assertThat(hourlyPaymentClassification.getHourlyRate(), is(closeTo(20.0, FLOATING_POINT_ACCURACY)));
+        assertThat(hourlyPaymentClassification.getHourlyRate(), is(closeTo(20.0, FLOAT_ACCURACY)));
 
         assertThat(employee.getPaymentSchedule(), is(instanceOf(WeeklyPaymentSchedule.class)));
         assertThat(employee.getPaymentMethod(), is(instanceOf(HoldMethod.class)));

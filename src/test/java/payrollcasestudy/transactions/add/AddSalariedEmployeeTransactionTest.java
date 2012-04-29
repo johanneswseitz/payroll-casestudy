@@ -12,12 +12,12 @@ import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import static payrollcasestudy.TestConstants.*;
 
 /**
  * Listing 19-2
  */
 public class AddSalariedEmployeeTransactionTest {
-    protected double FLOATING_POINT_ACCURACY = 0.000001;
 
     @Rule
     public DatabaseResource databaseResource = new DatabaseResource();
@@ -35,7 +35,7 @@ public class AddSalariedEmployeeTransactionTest {
         PaymentClassification paymentClassification = employee.getPaymentClassification();
         assertThat(paymentClassification, is(instanceOf(SalariedClassification.class)));
         SalariedClassification salariedClassification = (SalariedClassification) paymentClassification;
-        assertThat(salariedClassification.getSalary(), closeTo(1000.0, FLOATING_POINT_ACCURACY));
+        assertThat(salariedClassification.getSalary(), closeTo(1000.0, FLOAT_ACCURACY));
 
         assertThat(employee.getPaymentSchedule(), is(instanceOf(MonthlyPaymentSchedule.class)));
         assertThat(employee.getPaymentMethod(), is(instanceOf(HoldMethod.class)));

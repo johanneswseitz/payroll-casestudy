@@ -3,10 +3,8 @@ package payrollcasestudy.transactions.change;
 import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.entities.Employee;
-import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
-import payrollcasestudy.entities.paymentschedule.WeeklyPaymentSchedule;
 import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddEmployeeTransaction;
@@ -15,6 +13,7 @@ import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static payrollcasestudy.TestConstants.*;
 
 public class ChangeSalariedTransactionTest {
 
@@ -35,7 +34,7 @@ public class ChangeSalariedTransactionTest {
         assertThat(employee.getPaymentClassification(), is(instanceOf(SalariedClassification.class)));
         SalariedClassification paymentClassification =
                 (SalariedClassification) employee.getPaymentClassification();
-        assertThat(paymentClassification.getSalary(), is(closeTo(3000, 0.0001)));
+        assertThat(paymentClassification.getSalary(), is(closeTo(3000, FLOAT_ACCURACY)));
         assertThat(employee.getPaymentSchedule(), is(instanceOf(MonthlyPaymentSchedule.class)));
     }
 

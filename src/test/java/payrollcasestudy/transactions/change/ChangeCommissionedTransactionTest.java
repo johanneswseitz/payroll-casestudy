@@ -6,9 +6,9 @@ import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClassification;
 import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
 import payrollcasestudy.transactions.DatabaseResource;
-import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
+import static payrollcasestudy.TestConstants.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -32,8 +32,8 @@ public class ChangeCommissionedTransactionTest {
         assertThat(employee.getPaymentClassification(), is(instanceOf(CommissionedPaymentClassification.class)));
         CommissionedPaymentClassification paymentClassification =
                 (CommissionedPaymentClassification) employee.getPaymentClassification();
-        assertThat(paymentClassification.getMonthlySalary(), is(closeTo(200.0, 0.00001)));
-        assertThat(paymentClassification.getCommissionRate(), is(closeTo(20.0, 0.00001)));
+        assertThat(paymentClassification.getMonthlySalary(), is(closeTo(200.0, FLOAT_ACCURACY)));
+        assertThat(paymentClassification.getCommissionRate(), is(closeTo(20.0, FLOAT_ACCURACY)));
 
         assertThat(employee.getPaymentSchedule(), is(instanceOf(MonthlyPaymentSchedule.class)));
     }

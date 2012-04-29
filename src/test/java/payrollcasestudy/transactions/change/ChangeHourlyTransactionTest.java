@@ -11,6 +11,7 @@ import payrollcasestudy.transactions.add.AddEmployeeTransaction;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import static payrollcasestudy.TestConstants.*;
 
 public class ChangeHourlyTransactionTest {
 
@@ -31,7 +32,7 @@ public class ChangeHourlyTransactionTest {
         assertThat(employee.getPaymentClassification(), is(instanceOf(HourlyPaymentClassification.class)));
         HourlyPaymentClassification paymentClassification =
                 (HourlyPaymentClassification) employee.getPaymentClassification();
-        assertThat(paymentClassification.getHourlyRate(), is(closeTo(27.52, 0.0001)));
+        assertThat(paymentClassification.getHourlyRate(), is(closeTo(27.52, FLOAT_ACCURACY)));
         assertThat(employee.getPaymentSchedule(), is(instanceOf(WeeklyPaymentSchedule.class)));
     }
 }

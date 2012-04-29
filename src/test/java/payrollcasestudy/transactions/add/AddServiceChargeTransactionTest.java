@@ -10,6 +10,7 @@ import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static payrollcasestudy.TestConstants.*;
 
 public class AddServiceChargeTransactionTest {
 
@@ -36,6 +37,6 @@ public class AddServiceChargeTransactionTest {
         addServiceChargeTransaction.execute();
         ServiceCharge serviceCharge = unionAffiliation.getServiceCharge(20011101);
         assertThat(serviceCharge, is(notNullValue()));
-        assertThat(serviceCharge.getAmount(), is(closeTo(12.95, 0.001)));
+        assertThat(serviceCharge.getAmount(), is(closeTo(12.95, FLOAT_ACCURACY)));
     }
 }

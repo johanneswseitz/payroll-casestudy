@@ -11,10 +11,9 @@ import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+import static payrollcasestudy.TestConstants.*;
 
 public class AddSalesReceiptTransactionTest {
-
-    public static final double FLOATING_POINT_ACCURACY = 0.00001;
 
     @Rule
     public DatabaseResource database = new DatabaseResource();
@@ -37,6 +36,6 @@ public class AddSalesReceiptTransactionTest {
                 (CommissionedPaymentClassification) paymentClassification;
         SalesReceipt receipt = commissionedPaymentClassification.getSalesReceipt(20011031);
         assertThat(receipt, is(notNullValue()));
-        assertThat(receipt.getAmount(), is(closeTo(1000.0, FLOATING_POINT_ACCURACY)));
+        assertThat(receipt.getAmount(), is(closeTo(1000.0, FLOAT_ACCURACY)));
     }
 }
