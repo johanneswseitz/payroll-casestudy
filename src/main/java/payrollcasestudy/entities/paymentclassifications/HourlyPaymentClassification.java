@@ -1,5 +1,6 @@
 package payrollcasestudy.entities.paymentclassifications;
 
+import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.TimeCard;
 
 import java.util.HashMap;
@@ -24,5 +25,10 @@ public class HourlyPaymentClassification implements PaymentClassification{
 
     public void addTimeCard(TimeCard timeCard) {
         timeCardMap.put(timeCard.getDate() ,timeCard);
+    }
+
+    @Override
+    public double calculatePay(PayCheck payCheck) {
+        return 0;
     }
 }

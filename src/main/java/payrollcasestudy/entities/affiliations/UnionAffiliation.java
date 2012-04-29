@@ -1,13 +1,15 @@
 package payrollcasestudy.entities.affiliations;
 
+import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.ServiceCharge;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class UnionAffiliation {
     private double dues;
-    private Map<Integer, ServiceCharge> serviceCharges = new HashMap<Integer, ServiceCharge>();
+    private Map<Calendar, ServiceCharge> serviceCharges = new HashMap<Calendar, ServiceCharge>();
     public static final UnionAffiliation NO_AFFILIATION = new UnionAffiliation(-1,0);
     private int memberId;
 
@@ -16,11 +18,11 @@ public class UnionAffiliation {
         this.dues = dues;
     }
 
-    public ServiceCharge getServiceCharge(int date) {
+    public ServiceCharge getServiceCharge(Calendar date) {
         return serviceCharges.get(date);
     }
 
-    public void addServiceCharge(Integer date, double amount) {
+    public void addServiceCharge(Calendar date, double amount) {
         this.serviceCharges.put(date, new ServiceCharge(amount));
     }
 
@@ -32,4 +34,7 @@ public class UnionAffiliation {
         return memberId;
     }
 
+    public double calculateDeduction(PayCheck payCheck) {
+        return 0;
+    }
 }

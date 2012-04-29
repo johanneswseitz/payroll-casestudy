@@ -5,6 +5,8 @@ import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentmethods.PaymentMethod;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
 
+import java.util.Calendar;
+
 public class Employee {
     private PaymentClassification paymentClassification;
     private PaymentSchedule paymentSchedule;
@@ -66,5 +68,19 @@ public class Employee {
 
     public UnionAffiliation getUnionAffiliation() {
         return unionAffiliation;
+    }
+
+    public boolean isPayDate(Calendar payDate) {
+        return paymentSchedule.isPayDate(payDate);
+    }
+
+    public void payDay(PayCheck payCheck) {
+        double grossPay = paymentClassification.calculatePay(payCheck);
+        double deductions = unionAffiliation.calculateDeduction(payCheck);
+        double netPay = grossPay - deductions;
+        payCheck.setGrossPay(grossPay);
+        payCheck.setDeductions(deductions);
+        payCheck.setNetPay(netPay);
+        paymentMethod.pay(payCheck);
     }
 }

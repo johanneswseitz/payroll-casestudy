@@ -8,6 +8,9 @@ import payrollcasestudy.entities.ServiceCharge;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 import payrollcasestudy.transactions.Transaction;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static payrollcasestudy.TestConstants.*;
@@ -33,9 +36,10 @@ public class AddServiceChargeTransactionTest {
         database.getInstance().addUnionMember(memberId, employee);
         assertThat(database.getInstance().getUnionMember(memberId), is(notNullValue()));
 
-        AddServiceChargeTransaction addServiceChargeTransaction = new AddServiceChargeTransaction(memberId, 20011101, 12.95);
+        Calendar date = new GregorianCalendar(2001, 11, 01);
+        AddServiceChargeTransaction addServiceChargeTransaction = new AddServiceChargeTransaction(memberId, date, 12.95);
         addServiceChargeTransaction.execute();
-        ServiceCharge serviceCharge = unionAffiliation.getServiceCharge(20011101);
+        ServiceCharge serviceCharge = unionAffiliation.getServiceCharge(date);
         assertThat(serviceCharge, is(notNullValue()));
         assertThat(serviceCharge.getAmount(), is(closeTo(12.95, FLOAT_ACCURACY)));
     }

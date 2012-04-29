@@ -1,5 +1,6 @@
 package payrollcasestudy.entities.paymentclassifications;
 
+import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.SalesReceipt;
 
 import java.util.HashMap;
@@ -29,5 +30,10 @@ public class CommissionedPaymentClassification implements PaymentClassification 
 
     public void addSalesReceipt(SalesReceipt salesReceipt) {
         salesReceiptMap.put(salesReceipt.getDate(), salesReceipt);
+    }
+
+    @Override
+    public double calculatePay(PayCheck payCheck) {
+        return 0;
     }
 }

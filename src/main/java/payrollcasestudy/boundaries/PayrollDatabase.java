@@ -2,8 +2,7 @@ package payrollcasestudy.boundaries;
 
 import payrollcasestudy.entities.Employee;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Listing 19-3
@@ -43,5 +42,9 @@ public class PayrollDatabase {
 
     public void deleteUnionMember(int memberId) {
         unionMembers.remove(memberId);
+    }
+
+    public Set<Integer> getAllEmployeeIds() {
+        return employees.keySet();
     }
 }

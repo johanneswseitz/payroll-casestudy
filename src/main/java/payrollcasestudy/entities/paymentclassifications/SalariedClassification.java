@@ -1,5 +1,7 @@
 package payrollcasestudy.entities.paymentclassifications;
 
+import payrollcasestudy.entities.PayCheck;
+
 public class SalariedClassification implements PaymentClassification {
     private double salary;
 
@@ -8,6 +10,11 @@ public class SalariedClassification implements PaymentClassification {
     }
 
     public double getSalary() {
+        return salary;
+    }
+
+    @Override
+    public double calculatePay(PayCheck payCheck) {
         return salary;
     }
 }
