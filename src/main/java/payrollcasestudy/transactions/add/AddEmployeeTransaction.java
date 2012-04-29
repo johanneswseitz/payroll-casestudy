@@ -1,6 +1,6 @@
 package payrollcasestudy.transactions.add;
 
-import payrollcasestudy.*;
+import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.entities.paymentmethods.HoldMethod;

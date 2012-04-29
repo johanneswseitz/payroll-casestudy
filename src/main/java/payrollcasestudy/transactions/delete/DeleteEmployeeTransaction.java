@@ -1,6 +1,6 @@
 package payrollcasestudy.transactions.delete;
 
-import payrollcasestudy.PayrollDatabase;
+import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.transactions.Transaction;
 
 public class DeleteEmployeeTransaction implements Transaction{

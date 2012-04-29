@@ -1,7 +1,7 @@
 package payrollcasestudy.transactions.add;
 
+import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
-import payrollcasestudy.PayrollDatabase;
 import payrollcasestudy.entities.TimeCard;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;

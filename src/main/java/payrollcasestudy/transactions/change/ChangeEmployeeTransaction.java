@@ -1,6 +1,6 @@
 package payrollcasestudy.transactions.change;
 
-import payrollcasestudy.PayrollDatabase;
+import payrollcasestudy.boundaries.PayrollDatabase;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.transactions.Transaction;
 
