@@ -2,10 +2,10 @@ package payrollcasestudy.transactions.change;
 
 import org.junit.Rule;
 import org.junit.Test;
+import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.paymentclassifications.SalariedClassification;
 import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
-import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.add.AddCommissionedEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddEmployeeTransaction;
 

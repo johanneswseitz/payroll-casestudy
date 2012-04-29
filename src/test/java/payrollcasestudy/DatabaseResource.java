@@ -1,4 +1,4 @@
-package payrollcasestudy.transactions;
+package payrollcasestudy;
 
 import org.junit.rules.ExternalResource;
 import payrollcasestudy.boundaries.PayrollDatabase;

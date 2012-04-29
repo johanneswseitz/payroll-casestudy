@@ -2,11 +2,11 @@ package payrollcasestudy.transactions.add;
 
 import org.junit.Rule;
 import org.junit.Test;
+import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.TimeCard;
 import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassification;
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
-import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.Matchers.*;

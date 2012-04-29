@@ -2,10 +2,10 @@ package payrollcasestudy.transactions.add;
 
 import org.junit.Rule;
 import org.junit.Test;
+import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.ServiceCharge;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
-import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.Transaction;
 
 import static org.hamcrest.MatcherAssert.*;

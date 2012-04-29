@@ -2,8 +2,8 @@ package payrollcasestudy.transactions.change;
 
 import org.junit.Rule;
 import org.junit.Test;
+import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.Employee;
-import payrollcasestudy.transactions.DatabaseResource;
 import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
 
 import static org.hamcrest.Matchers.*;
