@@ -5,9 +5,6 @@ import payrollcasestudy.entities.SalesReceipt;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Johannes Seitz
- */
 public class CommissionedPaymentClassification implements PaymentClassification {
     private Map<Integer, SalesReceipt> salesReceiptMap = new HashMap<Integer, SalesReceipt>();
     private double commissionRate;
