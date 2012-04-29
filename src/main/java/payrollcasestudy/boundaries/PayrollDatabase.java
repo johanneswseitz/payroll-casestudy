@@ -1,4 +1,4 @@
-package payrollcasestudy;
+package payrollcasestudy.boundaries;
 
 import payrollcasestudy.entities.Employee;
 
