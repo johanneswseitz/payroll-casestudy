@@ -2,10 +2,13 @@ package payrollcasestudy.entities.affiliations;
 
 import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.ServiceCharge;
+import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
+import static payrollcasestudy.entities.paymentclassifications.PaymentClassification.isInPayPeriod;
 
 public class UnionAffiliation {
     private double dues;
@@ -23,7 +26,7 @@ public class UnionAffiliation {
     }
 
     public void addServiceCharge(Calendar date, double amount) {
-        this.serviceCharges.put(date, new ServiceCharge(amount));
+        this.serviceCharges.put(date, new ServiceCharge(date, amount));
     }
 
     public double getDues() {
@@ -35,8 +38,14 @@ public class UnionAffiliation {
     }
 
     public double calculateDeduction(PayCheck payCheck) {
-        int numberOfFridaysInPayPeriod = numberOfFridaysInPayPeriod(payCheck.getPayPeriodStart(), payCheck.getDate());
-        return numberOfFridaysInPayPeriod * dues;
+        double totalDeductions = 0;
+        totalDeductions += numberOfFridaysInPayPeriod(payCheck.getPayPeriodStart(), payCheck.getPayPeriodEnd()) * dues;
+        for (ServiceCharge serviceCharge : serviceCharges.values()){
+            if (isInPayPeriod(serviceCharge.getDate(), payCheck)){
+                totalDeductions += serviceCharge.getAmount();
+            }
+        }
+        return totalDeductions;
     }
 
     private int numberOfFridaysInPayPeriod(Calendar payPeriodStart, Calendar payPeriodEnd) {
