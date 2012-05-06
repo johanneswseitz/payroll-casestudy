@@ -4,9 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import payrollcasestudy.DatabaseResource;
 import payrollcasestudy.entities.PayCheck;
-import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
-import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
-import payrollcasestudy.transactions.add.AddTimeCardTransaction;
+import payrollcasestudy.transactions.add.*;
 import payrollcasestudy.transactions.change.ChangeMemberTransaction;
 
 import java.util.Calendar;
@@ -178,6 +176,49 @@ public class PaydayTransactionTest {
         int numberOfWeeksInPayPeriod = 5;
         double expectedDues = numberOfWeeksInPayPeriod * weeklyUnionDues;
         validateHourlyPaycheck(paydayTransaction, employeeId, payDate, 1000.0, expectedDues);
+    }
+
+    @Test
+    public void testPaySingleCommissionedEmployeeNoReceipts() throws Exception {
+        int employeeId = 2;
+        double commissionRate = 9.25;
+        Transaction addEmployeeTransaction = new AddCommissionedEmployeeTransaction(employeeId, "Bob", "Home", 700.0, commissionRate);
+        addEmployeeTransaction.execute();
+
+        Calendar payDate = new GregorianCalendar(2001, NOVEMBER, 16);
+        PaydayTransaction paydayTransaction = new PaydayTransaction(payDate);
+        paydayTransaction.execute();
+
+        validateCommissionedPaycheck(employeeId, payDate, paydayTransaction, 700.0);
+    }
+
+    @Test
+    public void testPaySingleCommissionedEmployeeWithOneReceipt() throws Exception {
+        int employeeId = 2;
+        double commissionRate = 0.5;
+        double monthlySalary = 700.0;
+        Transaction addEmployeeTransaction = new AddCommissionedEmployeeTransaction(employeeId, "Bob", "Home", monthlySalary, commissionRate);
+        addEmployeeTransaction.execute();
+
+        Calendar payDate = new GregorianCalendar(2001, NOVEMBER, 16);
+        double receiptAmount = 600.0;
+        Transaction addSalesReceiptTransaction = new AddSalesReceiptTransaction(payDate, receiptAmount, employeeId);
+        addSalesReceiptTransaction.execute();
+
+        PaydayTransaction paydayTransaction = new PaydayTransaction(payDate);
+        paydayTransaction.execute();
+
+        validateCommissionedPaycheck(employeeId, payDate, paydayTransaction, monthlySalary + receiptAmount * commissionRate);
+    }
+
+    private void validateCommissionedPaycheck(int employeeId, Calendar payDate,
+                                              PaydayTransaction paydayTransaction, double expectedGrossPay) {
+        PayCheck payCheck = paydayTransaction.getPaycheck(employeeId);
+        assertThat(payCheck.getDate(), is(payDate));
+        assertThat(payCheck.getGrossPay(), is(closeTo(expectedGrossPay, FLOAT_ACCURACY)));
+        assertThat(payCheck.getField("Disposition"), is("Hold"));
+        assertThat(payCheck.getDeductions(), is(closeTo(0, FLOAT_ACCURACY)));
+        assertThat(payCheck.getNetPay(), is(closeTo(expectedGrossPay, FLOAT_ACCURACY)));
     }
 
     private void validateHourlyPaycheck(PaydayTransaction paydayTransaction, int employeeId, Calendar payDate,
