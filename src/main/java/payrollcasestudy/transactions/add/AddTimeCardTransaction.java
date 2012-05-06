@@ -7,13 +7,15 @@ import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassificat
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.transactions.Transaction;
 
+import java.util.Calendar;
+
 public class AddTimeCardTransaction implements Transaction {
 
-    private int date;
+    private Calendar date;
     private double hours;
     private int employeeId;
 
-    public AddTimeCardTransaction(int date, double hours, int employeeId) {
+    public AddTimeCardTransaction(Calendar date, double hours, int employeeId) {
         this.date = date;
         this.hours = hours;
         this.employeeId = employeeId;

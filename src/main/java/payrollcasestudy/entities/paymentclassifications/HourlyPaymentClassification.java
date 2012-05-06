@@ -3,12 +3,14 @@ package payrollcasestudy.entities.paymentclassifications;
 import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.TimeCard;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HourlyPaymentClassification implements PaymentClassification{
 
-    private Map<Integer, TimeCard> timeCardMap = new HashMap<Integer, TimeCard>();
+    private Map<Calendar, TimeCard> timeCardMap = new HashMap<Calendar, TimeCard>();
     private double hourlyRate;
 
     public HourlyPaymentClassification(double hourlyRate) {
@@ -19,7 +21,7 @@ public class HourlyPaymentClassification implements PaymentClassification{
         return hourlyRate;
     }
 
-    public TimeCard getTimeCard(int date) {
+    public TimeCard getTimeCard(Calendar date) {
         return timeCardMap.get(date);
     }
 
@@ -29,6 +31,29 @@ public class HourlyPaymentClassification implements PaymentClassification{
 
     @Override
     public double calculatePay(PayCheck payCheck) {
-        return 0;
+        double totalPay = 0;
+        Calendar payPeriod = payCheck.getDate();
+
+        for(TimeCard timeCard: timeCardMap.values()){
+            if(isInPayPeriod(timeCard, payPeriod)){
+                totalPay += calculatePayForTimeCard(timeCard);
+            }
+        }
+        return totalPay;
+    }
+
+    private boolean isInPayPeriod(TimeCard timeCard, Calendar friday) {
+        Calendar monday = (Calendar) friday.clone();
+        monday.roll(Calendar.DAY_OF_MONTH, -5);
+        Calendar timeCardDate = timeCard.getDate();
+        return timeCardDate.equals(monday) || timeCardDate.equals(friday) ||
+                (timeCardDate.after(monday) && timeCardDate.before(friday));
+    }
+
+    private double calculatePayForTimeCard(TimeCard timeCard) {
+        double hours = timeCard.getHours();
+        double overtime = Math.max(0.0, hours-8.0);
+        double straightTime = hours - overtime;
+        return straightTime * hourlyRate + overtime * hourlyRate * 1.5;
     }
 }

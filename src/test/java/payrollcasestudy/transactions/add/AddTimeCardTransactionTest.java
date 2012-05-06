@@ -9,6 +9,9 @@ import payrollcasestudy.entities.paymentclassifications.HourlyPaymentClassificat
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.transactions.Transaction;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -25,7 +28,8 @@ public class AddTimeCardTransactionTest {
                 new AddHourlyEmployeeTransaction(employeeId, "Billy", "Home", 15.25);
         addHourlyEmployee.execute();
 
-        Transaction timeCardTransaction = new AddTimeCardTransaction(20011031, 8.0, employeeId);
+        Calendar date = new GregorianCalendar(2001,10,31);
+        Transaction timeCardTransaction = new AddTimeCardTransaction(date, 8.0, employeeId);
         timeCardTransaction.execute();
 
         Employee employee = database.getInstance().getEmployee(employeeId);
@@ -35,7 +39,7 @@ public class AddTimeCardTransactionTest {
         HourlyPaymentClassification hourlyPaymentClassification = (HourlyPaymentClassification) paymentClassification;
         assertThat(hourlyPaymentClassification, is(notNullValue()));
 
-        TimeCard timeCard =  hourlyPaymentClassification.getTimeCard(20011031);
+        TimeCard timeCard =  hourlyPaymentClassification.getTimeCard(date);
         assertNotNull(timeCard);
         assertThat(timeCard.getHours() , is(8.0));
     }
