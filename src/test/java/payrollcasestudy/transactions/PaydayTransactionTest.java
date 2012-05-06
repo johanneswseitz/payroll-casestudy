@@ -211,15 +211,6 @@ public class PaydayTransactionTest {
         validateCommissionedPaycheck(employeeId, payDate, paydayTransaction, monthlySalary + receiptAmount * commissionRate);
     }
 
-    private void validateCommissionedPaycheck(int employeeId, Calendar payDate,
-                                              PaydayTransaction paydayTransaction, double expectedGrossPay) {
-        PayCheck payCheck = paydayTransaction.getPaycheck(employeeId);
-        assertThat(payCheck.getDate(), is(payDate));
-        assertThat(payCheck.getGrossPay(), is(closeTo(expectedGrossPay, FLOAT_ACCURACY)));
-        assertThat(payCheck.getField("Disposition"), is("Hold"));
-        assertThat(payCheck.getDeductions(), is(closeTo(0, FLOAT_ACCURACY)));
-        assertThat(payCheck.getNetPay(), is(closeTo(expectedGrossPay, FLOAT_ACCURACY)));
-    }
 
     private void validateHourlyPaycheck(PaydayTransaction paydayTransaction, int employeeId, Calendar payDate,
                                         double expectedGross, double expectedDeductions) {
@@ -234,5 +225,15 @@ public class PaydayTransactionTest {
 
     private void validateHourlyPaycheck(PaydayTransaction paydayTransaction, int employeeId, Calendar payDate, double expectedAmount) {
         validateHourlyPaycheck(paydayTransaction, employeeId, payDate, expectedAmount, 0.0);
+    }
+
+    private void validateCommissionedPaycheck(int employeeId, Calendar payDate,
+                                              PaydayTransaction paydayTransaction, double expectedGrossPay) {
+        PayCheck payCheck = paydayTransaction.getPaycheck(employeeId);
+        assertThat(payCheck.getDate(), is(payDate));
+        assertThat(payCheck.getGrossPay(), is(closeTo(expectedGrossPay, FLOAT_ACCURACY)));
+        assertThat(payCheck.getField("Disposition"), is("Hold"));
+        assertThat(payCheck.getDeductions(), is(closeTo(0, FLOAT_ACCURACY)));
+        assertThat(payCheck.getNetPay(), is(closeTo(expectedGrossPay, FLOAT_ACCURACY)));
     }
 }
