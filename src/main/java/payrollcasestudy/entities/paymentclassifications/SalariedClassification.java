@@ -2,7 +2,7 @@ package payrollcasestudy.entities.paymentclassifications;
 
 import payrollcasestudy.entities.PayCheck;
 
-public class SalariedClassification implements PaymentClassification {
+public class SalariedClassification extends PaymentClassification {
     private double salary;
 
     public SalariedClassification(double salary) {

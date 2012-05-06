@@ -7,4 +7,9 @@ public class BiweeklyPaymentSchedule implements PaymentSchedule{
     public boolean isPayDate(Calendar payDate) {
         return false;
     }
+
+    @Override
+    public Calendar getPayPeriodStartDate(Calendar payDate) {
+        return null;
+    }
 }

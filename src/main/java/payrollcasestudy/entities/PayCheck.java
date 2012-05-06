@@ -8,11 +8,13 @@ public class PayCheck {
     private double grossPay;
     private double deductions;
     private double netPay;
+    private Calendar payPeriodStart;
     private Calendar payDate;
     private Map<String, String> fields = new HashMap<String, String>();
 
-    public PayCheck(Calendar payDate) {
-        this.payDate = payDate;
+    public PayCheck(Calendar payPeriodStart, Calendar payPeriodEnd) {
+        this.payPeriodStart = payPeriodStart;
+        this.payDate = payPeriodEnd;
     }
 
     public Calendar getDate() {
@@ -49,5 +51,9 @@ public class PayCheck {
 
     public void setField(String fieldName, String value) {
         fields.put(fieldName, value);
+    }
+
+    public Calendar getPayPeriodStart() {
+        return payPeriodStart;
     }
 }

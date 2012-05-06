@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HourlyPaymentClassification implements PaymentClassification{
+public class HourlyPaymentClassification extends PaymentClassification{
 
     private Map<Calendar, TimeCard> timeCardMap = new HashMap<Calendar, TimeCard>();
     private double hourlyRate;
@@ -32,22 +32,12 @@ public class HourlyPaymentClassification implements PaymentClassification{
     @Override
     public double calculatePay(PayCheck payCheck) {
         double totalPay = 0;
-        Calendar payPeriod = payCheck.getDate();
-
         for(TimeCard timeCard: timeCardMap.values()){
-            if(isInPayPeriod(timeCard, payPeriod)){
+            if(isInPayPeriod(timeCard.getDate(), payCheck)){
                 totalPay += calculatePayForTimeCard(timeCard);
             }
         }
         return totalPay;
-    }
-
-    private boolean isInPayPeriod(TimeCard timeCard, Calendar friday) {
-        Calendar monday = (Calendar) friday.clone();
-        monday.roll(Calendar.DAY_OF_MONTH, -5);
-        Calendar timeCardDate = timeCard.getDate();
-        return timeCardDate.equals(monday) || timeCardDate.equals(friday) ||
-                (timeCardDate.after(monday) && timeCardDate.before(friday));
     }
 
     private double calculatePayForTimeCard(TimeCard timeCard) {

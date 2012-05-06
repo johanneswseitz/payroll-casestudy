@@ -7,13 +7,15 @@ import payrollcasestudy.entities.paymentclassifications.CommissionedPaymentClass
 import payrollcasestudy.entities.paymentclassifications.PaymentClassification;
 import payrollcasestudy.transactions.Transaction;
 
+import java.util.Calendar;
+
 public class AddSalesReceiptTransaction implements Transaction{
 
-    private int date;
+    private Calendar date;
     private double amount;
     private int employeeId;
 
-    public AddSalesReceiptTransaction(int date, double amount, int employeeId) {
+    public AddSalesReceiptTransaction(Calendar date, double amount, int employeeId) {
         this.date = date;
         this.amount = amount;
         this.employeeId = employeeId;

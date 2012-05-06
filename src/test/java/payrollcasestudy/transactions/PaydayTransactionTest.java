@@ -7,10 +7,12 @@ import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.transactions.add.AddHourlyEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddSalariedEmployeeTransaction;
 import payrollcasestudy.transactions.add.AddTimeCardTransaction;
+import payrollcasestudy.transactions.change.ChangeMemberTransaction;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import static java.util.Calendar.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
@@ -31,7 +33,7 @@ public class PaydayTransactionTest {
         Transaction addSalariedEmployeeTransaction = new AddSalariedEmployeeTransaction(employeeId,"Bob", "Home", 1000.0);
         addSalariedEmployeeTransaction.execute();
 
-        Calendar payDate = new GregorianCalendar(2001, 10, 30);
+        Calendar payDate = new GregorianCalendar(2001, NOVEMBER, 30);
         PaydayTransaction paydayTransaction = new PaydayTransaction(payDate);
         paydayTransaction.execute();
 
@@ -49,7 +51,7 @@ public class PaydayTransactionTest {
         Transaction addEmployeeTransaction = new AddSalariedEmployeeTransaction(empId, "Bob", "Home", 1000.0);
         addEmployeeTransaction.execute();
 
-        Calendar payDate = new GregorianCalendar(2001, 11, 29);
+        Calendar payDate = new GregorianCalendar(2001, NOVEMBER, 29);
         PaydayTransaction payDayTransaction = new PaydayTransaction(payDate);
         payDayTransaction.execute();
 
@@ -149,7 +151,7 @@ public class PaydayTransactionTest {
         Transaction addTimeCard = new AddTimeCardTransaction(payDate, 2, employeeId);
         addTimeCard.execute();
 
-        Calendar dateInPreviousTimePeriod = new GregorianCalendar(2001, 10, 2);
+        Calendar dateInPreviousTimePeriod = new GregorianCalendar(2001, NOVEMBER, 2);
         Transaction addSecondTimeCard = new AddTimeCardTransaction(dateInPreviousTimePeriod, 5.0, employeeId);
         addSecondTimeCard.execute();
 
@@ -159,13 +161,37 @@ public class PaydayTransactionTest {
         validateHourlyPaycheck(paydayTransaction, employeeId, payDate, 2.0 * hourlySalary);
     }
 
-    private void validateHourlyPaycheck(PaydayTransaction paydayTransaction, int employeeId, Calendar payDate, double expectedAmount) {
+    @Test
+    public void testSalariedUnionMemberDues() throws Exception {
+        int employeeId = 1;
+        Transaction addEmployeeTransaction = new AddSalariedEmployeeTransaction(employeeId, "Bob", "Home", 1000.0);
+        addEmployeeTransaction.execute();
+        int memberId = 7734;
+        double weeklyUnionDues = 9.42;
+        ChangeMemberTransaction changeMemberTransaction = new ChangeMemberTransaction(employeeId, memberId, weeklyUnionDues);
+        changeMemberTransaction.execute();
+
+        Calendar payDate = new GregorianCalendar(2001, NOVEMBER, 30);
+        PaydayTransaction paydayTransaction = new PaydayTransaction(payDate);
+        paydayTransaction.execute();
+
+        int numberOfWeeksInPayPeriod = 5;
+        double expectedDues = numberOfWeeksInPayPeriod * weeklyUnionDues;
+        validateHourlyPaycheck(paydayTransaction, employeeId, payDate, 1000.0, expectedDues);
+    }
+
+    private void validateHourlyPaycheck(PaydayTransaction paydayTransaction, int employeeId, Calendar payDate,
+                                        double expectedGross, double expectedDeductions) {
         PayCheck payCheck = paydayTransaction.getPaycheck(employeeId);
         assertThat(payCheck, is(notNullValue()));
         assertThat(payCheck.getDate(), is(payDate));
-        assertThat(payCheck.getGrossPay(), is(closeTo(expectedAmount, FLOAT_ACCURACY)));
+        assertThat(payCheck.getGrossPay(), is(closeTo(expectedGross, FLOAT_ACCURACY)));
         assertThat(payCheck.getField("Disposition"), is("Hold"));
-        assertThat(payCheck.getDeductions(), is(closeTo(0.0, FLOAT_ACCURACY)));
-        assertThat(payCheck.getNetPay(), is(closeTo(expectedAmount, FLOAT_ACCURACY)));
+        assertThat(payCheck.getDeductions(), is(closeTo(expectedDeductions, FLOAT_ACCURACY)));
+        assertThat(payCheck.getNetPay(), is(closeTo(expectedGross - expectedDeductions, FLOAT_ACCURACY)));
+    }
+
+    private void validateHourlyPaycheck(PaydayTransaction paydayTransaction, int employeeId, Calendar payDate, double expectedAmount) {
+        validateHourlyPaycheck(paydayTransaction, employeeId, payDate, expectedAmount, 0.0);
     }
 }

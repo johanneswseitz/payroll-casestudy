@@ -35,6 +35,18 @@ public class UnionAffiliation {
     }
 
     public double calculateDeduction(PayCheck payCheck) {
-        return 0;
+        int numberOfFridaysInPayPeriod = numberOfFridaysInPayPeriod(payCheck.getPayPeriodStart(), payCheck.getDate());
+        return numberOfFridaysInPayPeriod * dues;
+    }
+
+    private int numberOfFridaysInPayPeriod(Calendar payPeriodStart, Calendar payPeriodEnd) {
+        int numberOfFridays = 0;
+        while (!payPeriodStart.after(payPeriodEnd)){
+            if (payPeriodStart.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+                numberOfFridays++;
+            }
+            payPeriodStart.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        return numberOfFridays;
     }
 }

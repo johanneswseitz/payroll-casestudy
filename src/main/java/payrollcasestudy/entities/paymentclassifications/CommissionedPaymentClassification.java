@@ -3,11 +3,12 @@ package payrollcasestudy.entities.paymentclassifications;
 import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.SalesReceipt;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommissionedPaymentClassification implements PaymentClassification {
-    private Map<Integer, SalesReceipt> salesReceiptMap = new HashMap<Integer, SalesReceipt>();
+public class CommissionedPaymentClassification extends PaymentClassification {
+    private Map<Calendar, SalesReceipt> salesReceiptMap = new HashMap<Calendar, SalesReceipt>();
     private double commissionRate;
     private double monthlySalary;
 
@@ -24,7 +25,7 @@ public class CommissionedPaymentClassification implements PaymentClassification 
         return commissionRate;
     }
 
-    public SalesReceipt getSalesReceipt(int date) {
+    public SalesReceipt getSalesReceipt(Calendar date) {
         return salesReceiptMap.get(date);
     }
 
@@ -34,6 +35,12 @@ public class CommissionedPaymentClassification implements PaymentClassification 
 
     @Override
     public double calculatePay(PayCheck payCheck) {
-        return 0;
+        double  totalPay = monthlySalary;
+        for (SalesReceipt receipt: salesReceiptMap.values()){
+            if (isInPayPeriod(receipt.getDate(), payCheck)){
+                totalPay += receipt.getAmount() * commissionRate;
+            }
+        }
+        return totalPay;
     }
 }
