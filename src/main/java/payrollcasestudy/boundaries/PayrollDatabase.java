@@ -9,6 +9,7 @@ import java.util.*;
  * Listing 19-4
  */
 public class PayrollDatabase {
+
     public static PayrollDatabase globalPayrollDatabase = new PayrollDatabase();
 
     private Map<Integer, Employee> employees = new HashMap<Integer, Employee>();

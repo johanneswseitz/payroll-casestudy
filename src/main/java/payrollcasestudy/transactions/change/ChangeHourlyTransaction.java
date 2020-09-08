@@ -6,7 +6,8 @@ import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
 import payrollcasestudy.entities.paymentschedule.WeeklyPaymentSchedule;
 
 public class ChangeHourlyTransaction extends ChangeClassificationTransaction{
-    private double hourlySalary;
+
+    private final double hourlySalary;
 
     public ChangeHourlyTransaction(int employeeId, double hourlySalary) {
         super(employeeId);

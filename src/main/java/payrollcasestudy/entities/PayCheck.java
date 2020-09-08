@@ -5,12 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PayCheck {
+
     private double grossPay;
     private double deductions;
     private double netPay;
-    private Calendar payPeriodStart;
-    private Calendar payDate;
-    private Map<String, String> fields = new HashMap<String, String>();
+    private final Calendar payPeriodStart;
+    private final Calendar payDate;
+    private final Map<String, String> fields = new HashMap<String, String>();
 
     public PayCheck(Calendar payPeriodStart, Calendar payPeriodEnd) {
         this.payPeriodStart = payPeriodStart;

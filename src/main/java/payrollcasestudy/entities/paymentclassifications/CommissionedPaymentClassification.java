@@ -8,9 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommissionedPaymentClassification extends PaymentClassification {
-    private Map<Calendar, SalesReceipt> salesReceiptMap = new HashMap<Calendar, SalesReceipt>();
-    private double commissionRate;
-    private double monthlySalary;
+
+    private final Map<Calendar, SalesReceipt> salesReceiptMap = new HashMap<Calendar, SalesReceipt>();
+    private final double commissionRate;
+    private final double monthlySalary;
 
     public CommissionedPaymentClassification(double monthlySalary, double commissionRate) {
         this.commissionRate = commissionRate;
@@ -35,7 +36,7 @@ public class CommissionedPaymentClassification extends PaymentClassification {
 
     @Override
     public double calculatePay(PayCheck payCheck) {
-        double  totalPay = monthlySalary;
+        double totalPay = monthlySalary;
         for (SalesReceipt receipt: salesReceiptMap.values()){
             if (isInPayPeriod(receipt.getDate(), payCheck)){
                 totalPay += receipt.getAmount() * commissionRate;

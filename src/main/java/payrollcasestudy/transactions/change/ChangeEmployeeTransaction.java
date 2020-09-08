@@ -7,7 +7,8 @@ import payrollcasestudy.transactions.Transaction;
 public abstract class ChangeEmployeeTransaction implements Transaction {
 
     PayrollDatabase database = PayrollDatabase.globalPayrollDatabase;
-    private int employeeId;
+
+    private final int employeeId;
 
     public ChangeEmployeeTransaction(int employeeId) {
         this.employeeId = employeeId;

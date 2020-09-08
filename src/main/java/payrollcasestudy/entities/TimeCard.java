@@ -3,8 +3,8 @@ package payrollcasestudy.entities;
 import java.util.Calendar;
 
 public class TimeCard {
-    private Calendar date;
-    private double hours;
+    private final Calendar date;
+    private final double hours;
 
     public TimeCard(Calendar date, double hours) {
         this.date = date;

@@ -3,7 +3,8 @@ package payrollcasestudy.entities.paymentclassifications;
 import payrollcasestudy.entities.PayCheck;
 
 public class SalariedClassification extends PaymentClassification {
-    private double salary;
+
+    private final double salary;
 
     public SalariedClassification(double salary) {
         this.salary = salary;

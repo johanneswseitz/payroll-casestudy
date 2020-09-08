@@ -13,9 +13,10 @@ import payrollcasestudy.transactions.Transaction;
  * Listing 19-6
  */
 public abstract class AddEmployeeTransaction implements Transaction {
-    private int employeeId;
-    private String employeeName;
-    private String employeeAddress;
+
+    private final int employeeId;
+    private final String employeeName;
+    private final String employeeAddress;
 
     public AddEmployeeTransaction(int employeeId, String employeeName, String employeeAddress){
         this.employeeId = employeeId;

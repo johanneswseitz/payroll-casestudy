@@ -11,9 +11,9 @@ import java.util.Calendar;
 
 public class AddTimeCardTransaction implements Transaction {
 
-    private Calendar date;
-    private double hours;
-    private int employeeId;
+    private final Calendar date;
+    private final double hours;
+    private final int employeeId;
 
     public AddTimeCardTransaction(Calendar date, double hours, int employeeId) {
         this.date = date;

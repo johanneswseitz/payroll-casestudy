@@ -6,8 +6,9 @@ import payrollcasestudy.entities.paymentschedule.MonthlyPaymentSchedule;
 import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
 
 public class ChangeCommissionedTransaction extends ChangeClassificationTransaction {
-    private int monthlySalary;
-    private double commissionRate;
+
+    private final int monthlySalary;
+    private final double commissionRate;
 
     public ChangeCommissionedTransaction(int employeeId, int monthlySalary, double commissionRate) {
         super(employeeId);

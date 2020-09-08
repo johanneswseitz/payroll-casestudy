@@ -11,9 +11,9 @@ import java.util.Calendar;
 
 public class AddSalesReceiptTransaction implements Transaction{
 
-    private Calendar date;
-    private double amount;
-    private int employeeId;
+    private final Calendar date;
+    private final double amount;
+    private final int employeeId;
 
     public AddSalesReceiptTransaction(Calendar date, double amount, int employeeId) {
         this.date = date;
