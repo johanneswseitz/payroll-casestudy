@@ -3,8 +3,9 @@ package payrollcasestudy.entities;
 import java.util.Calendar;
 
 public class ServiceCharge {
-    private Double amount;
-    private Calendar date;
+
+    private final Double amount;
+    private final Calendar date;
 
     public ServiceCharge(Calendar date, double amount) {
         this.amount = amount;

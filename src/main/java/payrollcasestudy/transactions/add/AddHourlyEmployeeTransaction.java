@@ -6,7 +6,8 @@ import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
 import payrollcasestudy.entities.paymentschedule.WeeklyPaymentSchedule;
 
 public class AddHourlyEmployeeTransaction extends AddEmployeeTransaction {
-    private double hourlyRate;
+
+    private final double hourlyRate;
 
     public AddHourlyEmployeeTransaction(int employeeId, String name, String address, double hourlyRate) {
         super(employeeId, name, address);

@@ -9,8 +9,9 @@ import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
  * @author Johannes Seitz
  */
 public class AddCommissionedEmployeeTransaction extends AddEmployeeTransaction{
-    private double monthlySalary;
-    private double commissionRate;
+
+    private final double monthlySalary;
+    private final double commissionRate;
 
     public AddCommissionedEmployeeTransaction(int employeeId, String name, String address,
                                               double monthlySalary, double commissionRate) {

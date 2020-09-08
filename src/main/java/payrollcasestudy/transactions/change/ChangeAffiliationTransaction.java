@@ -3,7 +3,7 @@ package payrollcasestudy.transactions.change;
 import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 
-public abstract class ChangeAffiliationTransaction extends ChangeEmployeeTransaction{
+public abstract class ChangeAffiliationTransaction extends ChangeEmployeeTransaction {
 
     public ChangeAffiliationTransaction(int employeeId) {
         super(employeeId);

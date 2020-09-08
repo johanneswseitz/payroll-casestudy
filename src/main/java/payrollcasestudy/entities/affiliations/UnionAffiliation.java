@@ -11,10 +11,10 @@ import java.util.Map;
 import static payrollcasestudy.entities.paymentclassifications.PaymentClassification.isInPayPeriod;
 
 public class UnionAffiliation {
-    private double dues;
-    private Map<Calendar, ServiceCharge> serviceCharges = new HashMap<Calendar, ServiceCharge>();
+    private final double dues;
+    private final Map<Calendar, ServiceCharge> serviceCharges = new HashMap<Calendar, ServiceCharge>();
     public static final UnionAffiliation NO_AFFILIATION = new UnionAffiliation(-1,0);
-    private int memberId;
+    private final int memberId;
 
     public UnionAffiliation(int memberId, double dues) {
         this.memberId = memberId;

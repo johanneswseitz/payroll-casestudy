@@ -4,7 +4,6 @@ import payrollcasestudy.entities.PayCheck;
 import payrollcasestudy.entities.TimeCard;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +31,8 @@ public class HourlyPaymentClassification extends PaymentClassification{
     @Override
     public double calculatePay(PayCheck payCheck) {
         double totalPay = 0;
-        for(TimeCard timeCard: timeCardMap.values()){
-            if(isInPayPeriod(timeCard.getDate(), payCheck)){
+        for (TimeCard timeCard : timeCardMap.values()) {
+            if (isInPayPeriod(timeCard.getDate(), payCheck)) {
                 totalPay += calculatePayForTimeCard(timeCard);
             }
         }

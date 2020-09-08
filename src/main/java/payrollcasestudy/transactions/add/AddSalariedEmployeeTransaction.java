@@ -7,7 +7,7 @@ import payrollcasestudy.entities.paymentschedule.PaymentSchedule;
 
 public class AddSalariedEmployeeTransaction extends AddEmployeeTransaction{
 
-    private double salary;
+    private final double salary;
 
     public AddSalariedEmployeeTransaction(int employeeId, String name, String address, double salary) {
         super(employeeId, name, address);

@@ -5,8 +5,9 @@ import payrollcasestudy.entities.Employee;
 import payrollcasestudy.entities.affiliations.UnionAffiliation;
 
 public class ChangeMemberTransaction extends ChangeAffiliationTransaction {
-    private int memberId;
-    private double dues;
+
+    private final int memberId;
+    private final double dues;
 
     public ChangeMemberTransaction(int employeeId, int memberId, double dues) {
         super(employeeId);
